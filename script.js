@@ -36,3 +36,34 @@ function notificar() {
     }
   });
 }
+const container = document.querySelector('.container');
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+
+  // Tamanho aleatório entre 10 e 30 px
+  const size = Math.random() * 20 + 10;
+  heart.style.width = size + 'px';
+  heart.style.height = size + 'px';
+
+  // Posição horizontal aleatória (0 a 100vw)
+  heart.style.left = Math.random() * 100 + 'vw';
+
+  // Tempo da animação entre 5 e 15 segundos
+  const duration = Math.random() * 4 + 3;
+  heart.style.animationDuration = duration + 's';
+
+  // Delay aleatório para não ficar tudo junto
+  heart.style.animationDelay = (Math.random() * 3) + 's';
+
+  container.appendChild(heart);
+
+  // Remove o coração depois da animação para não lotar o DOM
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000 + 1000);
+}
+
+// Criar um coração novo a cada 300ms
+setInterval(createHeart, 300);
