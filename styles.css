@@ -1,3 +1,4 @@
+/* Área principal do app */
 #app {
   display: flex;
   flex-direction: column;
@@ -5,8 +6,11 @@
   justify-content: flex-start;
   width: 100vw;
   height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 }
 
+/* Reset básico */
 body {
   margin: 0;
   padding: 0;
@@ -14,16 +18,19 @@ body {
   background: #fff0f5;
   color: #333;
 }
+html {
+  overflow-x: hidden;
+  height: 100vh;
+}
 
-
-/* Título bonito e centralizado */
+/* Título centralizado */
 h1 {
-  margin: 10% 0 30px;
+  margin: 40px 0 20px;
   font-size: 2.5rem;
   text-align: center;
 }
 
-/* Botão estilizado */
+/* Botões */
 .btn {
   padding: 12px 24px;
   background: #ff0066;
@@ -33,33 +40,26 @@ h1 {
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin: 10px auto;
+  display: block;
 }
-
 .btn:hover {
-  background: #357ab8;
+  background: #d4005a;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background: #fff0f5;
-  height: 100vh;
-  position: relative;
-  font-family: sans-serif;
-}
-
+/* Container de corações */
 .container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* para não atrapalhar cliques */
+  pointer-events: none;
   overflow: visible;
   z-index: 9999;
 }
 
+/* Corações animados */
 .heart {
   position: absolute;
   width: 200px;
@@ -69,11 +69,8 @@ body, html {
   clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");
   filter: drop-shadow(0 0 2px #c00);
   opacity: 0.8;
-  animation-name: fallRotate;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: fallRotate linear infinite;
 }
-
 @keyframes fallRotate {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -84,30 +81,26 @@ body, html {
     opacity: 0;
   }
 }
-.container-2{
-  position: relative;
+
+/* Container de imagens */
+.container-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
   width: 100%;
-  height: 75%;
-  bottom: 0;
-  left: 0;
+  max-width: 1000px;
 }
-img{
+
+/* Estilo das imagens */
+img {
   width: 200px;
   height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-#img1{
-    position: absolute;
-    right: 0;
-}
-#img2{
-    position: absolute;
-}
-#img3{
-    position: absolute;
-    right: 0;
-    bottom: 30%;
-}
-#img4{
-    position: absolute;
-    bottom: 30%;
+img:hover {
+  transform: scale(1.05);
 }
