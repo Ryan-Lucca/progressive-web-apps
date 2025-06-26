@@ -1,17 +1,20 @@
-/* Fonte limpa e moderna */
-body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: baseline;
-  background: #f5f5f5;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff0f5;
   color: #333;
 }
+
 
 /* Título bonito e centralizado */
 h1 {
