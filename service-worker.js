@@ -1,4 +1,4 @@
-const CACHE_NAME = "meu-pwa-v2"; // Aumente o número toda vez que fizer mudanças
+const CACHE_NAME = "meu-pwa-v3"; // Aumente o número toda vez que fizer mudanças
 const urlsToCache = [
   "/",
   "/index.html",
