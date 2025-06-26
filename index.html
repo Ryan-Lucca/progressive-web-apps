@@ -10,6 +10,27 @@
     <link rel="icon" href="icons/icon-192.png" />
 </head>
 <body>
+    <script>
+        const isInStandaloneMode = () =>
+            window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone === true; // para iOS
+
+        if (!isInStandaloneMode()) {
+            document.body.innerHTML = `
+                <div style="text-align: center; padding: 2rem; font-family: sans-serif;">
+                <h2>Quase lá! 💖</h2>
+                <p>Para instalar este site como um app:</p>
+                <ol style="text-align: left; max-width: 300px; margin: 1rem auto;">
+                    <li>Toque no botão <strong>Compartilhar</strong> (ícone de quadrado com seta pra cima)</li>
+                    <li>Escolha <strong>“Adicionar à Tela de Início”</strong></li>
+                    <li>Abra novamente pelo novo ícone criado</li>
+                </ol>
+                <p>Feito com carinho só pra você ❤️</p>
+                </div>
+            `;
+        }
+
+    </script>
     <h1>Oiee!</h1>
     <button class="btn" onclick="notificar()">Botão secreto</button>
     <br>
