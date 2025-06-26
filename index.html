@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu PWA</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="icon" href="icons/icon-192.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu PWA</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="icons/icon-192.png" />
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
+
+  <div id="standalone-message" style="display: none;">
+    <div style="text-align: center; padding: 2rem; font-family: sans-serif;">
+      <h2>Quase lá! 💖</h2>
+      <p>Para instalar este site como um app:</p>
+      <ol style="text-align: left; max-width: 300px; margin: 1rem auto;">
+        <li>Toque no botão <strong>Compartilhar</strong> (ícone de quadrado com seta pra cima)</li>
+        <li>Escolha <strong>“Adicionar à Tela de Início”</strong></li>
+        <li>Abra novamente pelo novo ícone criado</li>
+      </ol>
+      <p>Feito com carinho só pra você ❤️</p>
+    </div>
+  </div>
+
+  <div id="app" style="display: none; margin: 0; padding: 0;">
     <h1>Oiee!</h1>
     <button class="btn" onclick="notificar()">Botão secreto</button>
     <br>
-    <a href="https://wa.me/5511911645103?text=Oii%2C%20vamos%20bater%20um%20papo%3F%3F%3F%20%28sobre%20casamento%20e%20afins%29" target="_blank" rel="noopener noreferrer">
-        <button class="btn">Mandar um "oi" no WhatsApp</button>
+    <a href="https://wa.me/5511911645103?text=Oii%2C%20vamos%20bater%20um%20papo%3F%3F%3F%20%28sobre%20casamento%20e%20afins%29" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+      <button class="btn">Mandar um "oi" no WhatsApp</button>
     </a>
     <br>
     <div class="container"></div>
     <div class="container-2">
-        <img src="img/img1.jpeg" id="img1" alt="você">
-        <img src="img/img2.jpeg" id="img2" alt="é">
-        <img src="img/img3.jpeg" id="img3" alt="muito">
-        <img src="img/img4.jpeg" id="img4" alt="linda">
+      <img src="img/img1.jpeg" id="img1" alt="você">
+      <img src="img/img2.jpeg" id="img2" alt="é">
+      <img src="img/img3.jpeg" id="img3" alt="muito">
+      <img src="img/img4.jpeg" id="img4" alt="linda">
     </div>
+  </div>
 
-    <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-            .then(() => console.log('SW registrado!'))
-            .catch(err => console.error('Erro no SW:', err));
-        }
-    </script>
+  <script>
+    const isInStandaloneMode = () =>
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+
+    if (isInStandaloneMode()) {
+      document.getElementById('app').style.display = 'block';
+    } else {
+      document.getElementById('standalone-message').style.display = 'block';
+    }
+  </script>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('SW registrado!'))
+        .catch(err => console.error('Erro no SW:', err));
+    }
+  </script>
 </body>
 </html>
