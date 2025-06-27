@@ -35,6 +35,44 @@ function notificar() {
       });
     }
   });
+  
+  // Criar o fundo escuro (overlay)
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  overlay.style.display = "flex";
+  overlay.style.justifyContent = "center";
+  overlay.style.alignItems = "center";
+  overlay.style.zIndex = "9999";
+
+  // Criar o card da mensagem
+  const card = document.createElement("div");
+  card.style.backgroundColor = "#fff";
+  card.style.padding = "20px";
+  card.style.borderRadius = "10px";
+  card.style.boxShadow = "0 2px 10px rgba(0,0,0,0.3)";
+  card.style.maxWidth = "80%";
+  card.style.textAlign = "center";
+  card.innerHTML = `
+    <h2>Além de bonita é curiosa?</h2>
+    <p>${mensagem}</p>
+    <button id="fecharCard" style="margin-top: 15px; padding: 10px 20px; border: none; background: #007BFF; color: white; border-radius: 5px; cursor: pointer;">
+      Fechar
+    </button>
+  `;
+
+  // Adiciona os elementos no body
+  overlay.appendChild(card);
+  document.body.appendChild(overlay);
+
+  // Evento para fechar o card
+  document.getElementById("fecharCard").addEventListener("click", () => {
+    document.body.removeChild(overlay);
+  });
 }
 const container = document.querySelector('.container');
 
