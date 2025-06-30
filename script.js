@@ -157,7 +157,7 @@ function atualizarContagem() {
   const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
   const segundos = segundosTotais % 60;
 
-  contagem.innerHTML = `fefa faz ${idade}:<br> ${dias} dia${dias !== 1 ? "s" : ""}, ${horas}h ${minutos}min ${segundos}s<br>`;
+  contagem.innerHTML = `Fefa faz ${idade}:<br> ${dias} dia${dias !== 1 ? "s" : ""}, ${horas}h ${minutos}min ${segundos}s<br>`;
 }
 
 // Atualiza a cada segundo
