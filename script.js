@@ -30,12 +30,14 @@ function notificar() {
   Notification.requestPermission().then((perm) => {
     if (perm === "granted") {
       new Notification("Além de bonita é curiosa?", {
-        body: "aqui vai uma mensagem: "+curiosidades(),
+        body: "aqui vai uma mensagem: " + curiosidades(),
         icon: "icons/icon-192.png"
       });
     }
   });
-  
+
+  const mensagem = curiosidades();
+
   // Criar o fundo escuro (overlay)
   const overlay = document.createElement("div");
   overlay.style.position = "fixed";
@@ -47,7 +49,7 @@ function notificar() {
   overlay.style.display = "flex";
   overlay.style.justifyContent = "center";
   overlay.style.alignItems = "center";
-  overlay.style.zIndex = "9999";
+  overlay.style.zIndex = "9999999";
 
   // Criar o card da mensagem
   const card = document.createElement("div");
@@ -60,20 +62,32 @@ function notificar() {
   card.innerHTML = `
     <h2>Além de bonita é curiosa?</h2>
     <p>${mensagem}</p>
-    <button id="fecharCard" style="margin-top: 15px; padding: 10px 20px; border: none; background: #007BFF; color: white; border-radius: 5px; cursor: pointer;">
-      Fechar
-    </button>
   `;
 
   // Adiciona os elementos no body
   overlay.appendChild(card);
   document.body.appendChild(overlay);
 
-  // Evento para fechar o card
-  document.getElementById("fecharCard").addEventListener("click", () => {
-    document.body.removeChild(overlay);
+  // Função para remover o card
+  function fecharCard() {
+    if (document.body.contains(overlay)) {
+      document.body.removeChild(overlay);
+    }
+  }
+
+  
+
+  // Evento para fechar clicando no fundo escuro
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      fecharCard();
+    }
   });
+
+  // Fechar automaticamente após 4 segundos
+  setTimeout(fecharCard, 4000);
 }
+
 const container = document.querySelector('.container');
 
 function createHeart() {
@@ -105,3 +119,47 @@ function createHeart() {
 
 // Criar um coração novo a cada 300ms
 setInterval(createHeart, 300);
+
+
+const contagem = document.getElementById("contagem");
+
+function atualizarContagem() {
+  const agora = new Date();
+  const anoAtual = agora.getFullYear();
+
+  // Próximo aniversário em 15/12
+  let proximoAniversario = new Date(`${anoAtual}-12-15T00:00:00`);
+
+  // Se já passou este ano, pega o do próximo
+  if (agora > proximoAniversario) {
+    proximoAniversario = new Date(`${anoAtual + 1}-12-15T00:00:00`);
+  }
+
+  // Idade que Fefa vai fazer
+  const nascimento = new Date("2008-12-15"); // altere aqui se quiser
+  const idade = proximoAniversario.getFullYear() - nascimento.getFullYear();
+
+  // Verifica se é hoje
+  if (
+    agora.getDate() === proximoAniversario.getDate() &&
+    agora.getMonth() === proximoAniversario.getMonth()
+  ) {
+    contagem.innerHTML = `Hoje a Fefa faz ${idade}! 🎉`;
+    return;
+  }
+
+  // Diferença total em milissegundos
+  const diffMs = proximoAniversario - agora;
+
+  const segundosTotais = Math.floor(diffMs / 1000);
+  const dias = Math.floor(segundosTotais / (60 * 60 * 24));
+  const horas = Math.floor((segundosTotais % (60 * 60 * 24)) / (60 * 60));
+  const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
+  const segundos = segundosTotais % 60;
+
+  contagem.innerHTML = `fefa faz ${idade}:<br> ${dias} dia${dias !== 1 ? "s" : ""}, ${horas}h ${minutos}min ${segundos}s<br>`;
+}
+
+// Atualiza a cada segundo
+setInterval(atualizarContagem, 1000);
+atualizarContagem(); // chama já na primeira vez
